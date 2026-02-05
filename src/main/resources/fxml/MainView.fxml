@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentanalysis.controller.MainController"
+      spacing="10" prefWidth="1000" prefHeight="700" styleClass="root">
+    <children>
+        <!-- Menu Bar -->
+        <MenuBar>
+            <menus>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="Exit" onAction="#handleExit" />
+                    </items>
+                </Menu>
+                <Menu text="Students">
+                    <items>
+                        <MenuItem text="Add Student" onAction="#handleAddStudent" />
+                        <MenuItem text="View Students" onAction="#handleViewStudents" />
+                    </items>
+                </Menu>
+                <Menu text="Subjects">
+                    <items>
+                        <MenuItem text="Add Subject" onAction="#handleAddSubject" />
+                        <MenuItem text="View Subjects" onAction="#handleViewSubjects" />
+                    </items>
+                </Menu>
+                <Menu text="Marks">
+                    <items>
+                        <MenuItem text="Enter Marks" onAction="#handleEnterMarks" />
+                        <MenuItem text="View Marks" onAction="#handleViewMarks" />
+                    </items>
+                </Menu>
+                <Menu text="Analysis">
+                    <items>
+                        <MenuItem text="Performance Analysis" onAction="#handlePerformanceAnalysis" />
+                        <MenuItem text="Generate Report" onAction="#handleGenerateReport" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+        <!-- Main Content -->
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <!-- Dashboard Tab -->
+                <Tab text="Dashboard">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <VBox spacing="20">
+                                <!-- Statistics Cards -->
+                                <HBox spacing="20" alignment="CENTER">
+                                    <VBox styleClass="dashboard-card" alignment="CENTER" prefWidth="200">
+                                        <Label text="Total Students" styleClass="stat-title" />
+                                        <Label fx:id="totalStudentsLabel" text="0" styleClass="stat-label" />
+                                    </VBox>
+                                    <VBox styleClass="dashboard-card" alignment="CENTER" prefWidth="200">
+                                        <Label text="Total Subjects" styleClass="stat-title" />
+                                        <Label fx:id="totalSubjectsLabel" text="0" styleClass="stat-label" />
+                                    </VBox>
+                                    <VBox styleClass="dashboard-card" alignment="CENTER" prefWidth="200">
+                                        <Label text="Total Marks Entries" styleClass="stat-title" />
+                                        <Label fx:id="totalMarksLabel" text="0" styleClass="stat-label" />
+                                    </VBox>
+                                </HBox>
+
+                                <!-- Recent Activity -->
+                                <VBox spacing="10">
+                                    <Label text="Recent Activity" styleClass="label header" />
+                                    <TextArea fx:id="recentActivityTextArea" editable="false" prefRowCount="10" />
+                                </VBox>
+
+                                <!-- Quick Actions -->
+                                <VBox spacing="10">
+                                    <Label text="Quick Actions" styleClass="label header" />
+                                    <HBox spacing="10">
+                                        <Button text="Add Student" onAction="#handleAddStudent" styleClass="button" />
+                                        <Button text="Add Subject" onAction="#handleAddSubject" styleClass="button" />
+                                        <Button text="Enter Marks" onAction="#handleEnterMarks" styleClass="button" />
+                                        <Button text="View Analysis" onAction="#handlePerformanceAnalysis" styleClass="button" />
+                                    </HBox>
+                                </VBox>
+                            </VBox>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <!-- Students Tab -->
+                <Tab text="Students">
+                    <content>
+                        <VBox spacing="10">
+                            <HBox spacing="10">
+                                <Button text="Add Student" onAction="#handleAddStudent" styleClass="button" />
+                                <Button text="Refresh" styleClass="button" />
+                            </HBox>
+                            <TableView prefHeight="500">
+                                <columns>
+                                    <TableColumn text="ID" prefWidth="50" />
+                                    <TableColumn text="Name" prefWidth="150" />
+                                    <TableColumn text="Email" prefWidth="200" />
+                                    <TableColumn text="Phone" prefWidth="120" />
+                                    <TableColumn text="Enrollment Date" prefWidth="120" />
+                                    <TableColumn text="Actions" prefWidth="150" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- Subjects Tab -->
+                <Tab text="Subjects">
+                    <content>
+                        <VBox spacing="10">
+                            <HBox spacing="10">
+                                <Button text="Add Subject" onAction="#handleAddSubject" styleClass="button" />
+                                <Button text="Refresh" styleClass="button" />
+                            </HBox>
+                            <TableView prefHeight="500">
+                                <columns>
+                                    <TableColumn text="ID" prefWidth="50" />
+                                    <TableColumn text="Subject Name" prefWidth="200" />
+                                    <TableColumn text="Subject Code" prefWidth="120" />
+                                    <TableColumn text="Credits" prefWidth="80" />
+                                    <TableColumn text="Actions" prefWidth="150" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- Marks Tab -->
+                <Tab text="Marks">
+                    <content>
+                        <VBox spacing="10">
+                            <HBox spacing="10">
+                                <Button text="Enter Marks" onAction="#handleEnterMarks" styleClass="button" />
+                                <Button text="Refresh" styleClass="button" />
+                            </HBox>
+                            <TableView prefHeight="500">
+                                <columns>
+                                    <TableColumn text="ID" prefWidth="50" />
+                                    <TableColumn text="Student" prefWidth="150" />
+                                    <TableColumn text="Subject" prefWidth="150" />
+                                    <TableColumn text="Marks Obtained" prefWidth="120" />
+                                    <TableColumn text="Total Marks" prefWidth="100" />
+                                    <TableColumn text="Percentage" prefWidth="100" />
+                                    <TableColumn text="Exam Date" prefWidth="120" />
+                                    <TableColumn text="Actions" prefWidth="150" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- Analysis Tab -->
+                <Tab text="Analysis">
+                    <content>
+                        <VBox spacing="10">
+                            <HBox spacing="10">
+                                <Button text="Generate Analysis" onAction="#handlePerformanceAnalysis" styleClass="button" />
+                                <Button text="Generate Report" onAction="#handleGenerateReport" styleClass="button" />
+                            </HBox>
+                            <TabPane prefHeight="500">
+                                <tabs>
+                                    <Tab text="Charts">
+                                        <content>
+                                            <VBox spacing="10">
+                                                <Label text="Performance Charts" styleClass="label header" />
+                                                <!-- Placeholder for charts -->
+                                                <Label text="Charts will be displayed here" />
+                                            </VBox>
+                                        </content>
+                                    </Tab>
+                                    <Tab text="Statistics">
+                                        <content>
+                                            <VBox spacing="10">
+                                                <Label text="Performance Statistics" styleClass="label header" />
+                                                <!-- Placeholder for statistics -->
+                                                <Label text="Statistics will be displayed here" />
+                                            </VBox>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </TabPane>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</VBox>
