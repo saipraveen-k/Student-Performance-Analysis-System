@@ -54,7 +54,7 @@ The system follows a layered architecture to ensure separation of concerns, modu
    - **Technology:** JDBC for database connectivity.
    - **Components:** DAO classes (e.g., StudentDAO, MarksDAO) handle CRUD operations.
    - **Responsibilities:** Abstract database interactions, execute SQL queries, manage connections, and ensure data integrity.
-   - **Interactions:** Receives data operation requests from the service layer and interacts directly with the MySQL database.
+- **Interactions:** Receives data operation requests from the service layer and interacts directly with the PostgreSQL database.
 
 ### Overall Architecture Diagram
 ```
@@ -66,7 +66,7 @@ JavaFX User Interface (FXML/CSS)
           ↓ (DAO Calls)
     DAO Layer (JDBC Queries)
           ↓ (SQL Operations)
-    MySQL Database (XAMPP Server)
+    PostgreSQL Database (PostgreSQL Server)
 ```
 
 This layered approach promotes:
@@ -85,7 +85,7 @@ The data flow in the system follows a request-response pattern, ensuring smooth 
 2. **UI to Controller:** Controllers capture inputs, perform basic validation, and invoke service methods.
 3. **Controller to Service:** Services process business logic (e.g., calculate performance metrics) and call DAO methods for data retrieval/storage.
 4. **Service to DAO:** DAOs execute database operations (e.g., INSERT marks, SELECT student data) using JDBC.
-5. **DAO to Database:** Data is stored/retrieved from MySQL tables.
+5. **DAO to Database:** Data is stored/retrieved from PostgreSQL tables.
 6. **Response Flow:** Results flow back: Database → DAO → Service → Controller → UI, where visualizations or confirmations are displayed.
 
 ### Data Flow Diagram (ASCII)
@@ -100,7 +100,7 @@ Service (Business Logic, e.g., Validate & Calculate)
        ↓
 DAO (CRUD Operations)
        ↓
-MySQL DB (Store/Retrieve Data)
+PostgreSQL DB (Store/Retrieve Data)
        ↓
 DAO (Return Results)
        ↓
@@ -138,9 +138,9 @@ The system is organized into modular components, each handling specific function
 
 - **Programming Language:** Java  
 - **User Interface:** JavaFX  
-- **Database:** MySQL  
-- **Database Server:** XAMPP  
-- **Database Connectivity:** JDBC  
+- **Database:** PostgreSQL
+- **Database Server:** PostgreSQL Server
+- **Database Connectivity:** JDBC (Add PostgreSQL JDBC driver to classpath, e.g., postgresql-42.7.9.jar)
 - **IDE:** VS Code / Eclipse  
 
 
@@ -149,7 +149,7 @@ The system is organized into modular components, each handling specific function
 
 ## 🗄️ Database Design
 
-The database is designed using MySQL with a relational model to store and manage student performance data efficiently. It consists of three main tables with defined relationships to maintain data integrity.
+The database is designed using PostgreSQL with a relational model to store and manage student performance data efficiently. It consists of three main tables with defined relationships to maintain data integrity.
 
 ### Tables Used
 
@@ -235,26 +235,25 @@ Follow these steps to set up and run the Student Performance Analysis System on 
 
 ### Prerequisites
 - **Java JDK (8 or above):** Ensure JDK is installed and JAVA_HOME is set. Download from [Oracle](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) if needed.
-- **XAMPP (Apache + MySQL):** Required for the MySQL database server. Download from [Apache Friends](https://www.apachefriends.org/index.html).
+- **PostgreSQL:** Install PostgreSQL server. Download from [PostgreSQL Official Site](https://www.postgresql.org/download/).
 - **VS Code or Eclipse IDE:** Recommended for editing and running the project. Install Java extensions for VS Code.
 
 ### Setup Steps
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/student-performance-analysis-system.git
+   git clone https://github.com/sai-praveen-k/student-performance-analysis-system.git
    cd student-performance-analysis-system
    ```
 
 2. **Set Up the Database:**
-   - Launch XAMPP and start the MySQL service from the XAMPP Control Panel.
-   - Open phpMyAdmin (usually at http://localhost/phpmyadmin).
-   - Create a new database named `student_performance_db` (or as specified in your schema).
-   - Import the `database/schema.sql` file into the database to create tables and initial data.
+   - Install and start PostgreSQL server.
+   - Use psql or pgAdmin to create a new database named `student_performance_db`.
+   - Run the `database/schema.sql` script in the database to create tables and insert sample data.
 
 3. **Configure Database Connection:**
    - Open `src/main/java/com/studentanalysis/util/DBConnection.java`.
-   - Update the database URL, username, and password to match your MySQL setup (default: username `root`, password empty).
+   - Update the database URL, username, and password to match your PostgreSQL setup (default: username `postgres`, password as set).
 
 4. **Open and Run the Project:**
    - Open the project in VS Code or Eclipse.
@@ -296,9 +295,9 @@ Once the application is running, follow these steps to use the system:
 
 ### Troubleshooting Tips
 
-- **Database Connection Issues:** Verify MySQL is running in XAMPP. Check credentials in `DBConnection.java`. Ensure the database exists.
+- **Database Connection Issues:** Verify PostgreSQL is running. Check credentials in `DBConnection.java`. Ensure the database exists and the schema is applied.
 - **JavaFX Errors:** Confirm JavaFX is installed and added to the classpath/module path. For JDK 11+, use the `--module-path` flag.
-- **Port Conflicts:** If MySQL port 3306 is in use, change it in XAMPP settings and update the connection string.
+- **Port Conflicts:** If PostgreSQL port 5432 is in use, change it in PostgreSQL configuration and update the connection string.
 - **Build Errors:** Clean and rebuild the project in your IDE. Ensure all dependencies are resolved.
 - **Performance Issues:** For large datasets, optimize queries in DAO classes or increase JVM heap size.
 - **Common Errors:** If "Class not found" occurs, check package imports. For UI not loading, verify FXML paths in resources.

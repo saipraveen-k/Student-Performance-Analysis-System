@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/student_performance_db";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
+    private static final String URL = "jdbc:postgresql://localhost:5432/student_performance_db";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "root";
 
     private static Connection connection = null;
 
@@ -17,12 +17,12 @@ public class DBConnection {
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("org.postgresql.Driver");
                 connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 System.out.println("Database connected successfully!");
             } catch (ClassNotFoundException e) {
-                System.err.println("MySQL JDBC Driver not found.");
-                throw new SQLException("MySQL JDBC Driver not found.", e);
+                System.err.println("PostgreSQL JDBC Driver not found.");
+                throw new SQLException("PostgreSQL JDBC Driver not found.", e);
             }
         }
         return connection;

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentanalysis.controller.AnalysisController"
+      spacing="15" prefWidth="1000" prefHeight="700" styleClass="root">
+    <children>
+        <Label text="Performance Analysis" styleClass="label header" />
+
+        <!-- Statistics Cards -->
+        <HBox spacing="20" alignment="CENTER">
+            <VBox styleClass="dashboard-card" alignment="CENTER" prefWidth="150">
+                <Label text="Class Average" styleClass="stat-title" />
+                <Label fx:id="classAverageLabel" text="0.00%" styleClass="stat-label" />
+            </VBox>
+            <VBox styleClass="dashboard-card" alignment="CENTER" prefWidth="150">
+                <Label text="Total Students" styleClass="stat-title" />
+                <Label fx:id="totalStudentsLabel" text="0" styleClass="stat-label" />
+            </VBox>
+            <VBox styleClass="dashboard-card" alignment="CENTER" prefWidth="150">
+                <Label text="Total Subjects" styleClass="stat-title" />
+                <Label fx:id="totalSubjectsLabel" text="0" styleClass="stat-label" />
+            </VBox>
+            <VBox styleClass="dashboard-card" alignment="CENTER" prefWidth="150">
+                <Label text="Pass Rate" styleClass="stat-title" />
+                <Label fx:id="passRateLabel" text="0.00%" styleClass="stat-label" />
+            </VBox>
+        </HBox>
+
+        <!-- Buttons -->
+        <HBox spacing="10">
+            <Button text="Generate Analysis" onAction="#handleGenerateAnalysis" styleClass="button" />
+            <Button text="Refresh" onAction="#handleRefresh" styleClass="button" />
+        </HBox>
+
+        <!-- Charts and Tables -->
+        <TabPane prefHeight="500">
+            <tabs>
+                <Tab text="Charts">
+                    <content>
+                        <VBox spacing="10">
+                            <Label text="Subject Performance Chart" styleClass="label header" />
+                            <BarChart fx:id="subjectChart" prefHeight="300">
+                                <xAxis>
+                                    <CategoryAxis label="Subjects" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Average Marks" />
+                                </yAxis>
+                            </BarChart>
+
+                            <Label text="Student Performance Chart" styleClass="label header" />
+                            <BarChart fx:id="studentChart" prefHeight="300">
+                                <xAxis>
+                                    <CategoryAxis label="Students" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Average Marks" />
+                                </yAxis>
+                            </BarChart>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Top Performers">
+                    <content>
+                        <VBox spacing="10">
+                            <Label text="Top Performing Students" styleClass="label header" />
+                            <TableView fx:id="topStudentsTable" prefHeight="400" />
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Weak Areas">
+                    <content>
+                        <VBox spacing="10">
+                            <Label text="Weak Performing Subjects" styleClass="label header" />
+                            <TableView fx:id="weakSubjectsTable" prefHeight="400" />
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</VBox>

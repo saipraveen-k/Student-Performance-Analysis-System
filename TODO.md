@@ -1,2 +1,14 @@
-=======
-- [x] Update TODO.md with completed tasks
+# TODO: Complete Student Performance Analysis System
+
+## Steps to Complete
+- [x] Create missing FXML files: AddSubjectView.fxml, StudentListView.fxml, SubjectListView.fxml, EnterMarksView.fxml, MarksListView.fxml, AnalysisView.fxml, ReportView.fxml (Partially done: AddSubjectView, EnterMarksView, AnalysisView created)
+- [x] Create corresponding controllers: AddSubjectController.java, StudentListController.java, SubjectListController.java, EnterMarksController.java, MarksListController.java, AnalysisController.java, ReportController.java (Partially done: AddSubjectController, EnterMarksController, AnalysisController created)
+- [x] Implement MarksDAO.java fully (add, update, delete, getAllMarks)
+- [x] Complete service layers: MarksService.java, AnalysisService.java (add analysis logic for averages, rankings, weak subjects)
+- [ ] Update MainView.fxml to bind tables with data (students, subjects, marks tables)
+- [ ] Implement data binding in controllers for tables and forms
+- [ ] Add chart visualizations in Analysis tab using JavaFX charts (bar charts for subject performance, line charts for trends)
+- [ ] Test database connection and CRUD operations
+- [ ] Test UI functionality (add/edit/view operations)
+- [ ] Test analysis features (calculations, charts)
+- [ ] Run the application and verify overall functionality

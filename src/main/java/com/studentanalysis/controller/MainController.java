@@ -60,6 +60,7 @@ public class MainController {
     @FXML
     private void handleAddStudent() {
         openWindow("/fxml/AddStudentView.fxml", "Add Student");
+        updateDashboardStats(); // Refresh stats after adding student
     }
 
     @FXML
@@ -80,6 +81,7 @@ public class MainController {
     @FXML
     private void handleEnterMarks() {
         openWindow("/fxml/EnterMarksView.fxml", "Enter Marks");
+        updateDashboardStats(); // Refresh stats after entering marks
     }
 
     @FXML

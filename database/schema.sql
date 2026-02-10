@@ -1,12 +1,12 @@
 -- Student Performance Analysis System Database Schema
--- MySQL Database: student_performance_db
+-- PostgreSQL Database: student_performance_db
 
-CREATE DATABASE IF NOT EXISTS student_performance_db;
-USE student_performance_db;
+-- Note: Create the database manually in PostgreSQL before running this script.
+-- psql -U postgres -c "CREATE DATABASE student_performance_db;"
 
 -- Students table
 CREATE TABLE IF NOT EXISTS students (
-    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
     phone VARCHAR(15),
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS students (
 
 -- Subjects table
 CREATE TABLE IF NOT EXISTS subjects (
-    subject_id INT PRIMARY KEY AUTO_INCREMENT,
+    subject_id SERIAL PRIMARY KEY,
     subject_name VARCHAR(100) NOT NULL,
     subject_code VARCHAR(10) UNIQUE NOT NULL,
     credits INT
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS subjects (
 
 -- Marks table
 CREATE TABLE IF NOT EXISTS marks (
-    mark_id INT PRIMARY KEY AUTO_INCREMENT,
+    mark_id SERIAL PRIMARY KEY,
     student_id INT,
     subject_id INT,
     marks_obtained DECIMAL(5,2),
