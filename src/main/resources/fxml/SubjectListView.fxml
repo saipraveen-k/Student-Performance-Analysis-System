@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentanalysis.controller.SubjectListController"
+      spacing="15" prefWidth="800" prefHeight="600" styleClass="root">
+    <children>
+        <Label text="Subject List" styleClass="label header" />
+
+        <HBox spacing="10">
+            <Button text="Add Subject" onAction="#handleAddSubject" styleClass="button" />
+            <Button text="Refresh" onAction="#handleRefresh" styleClass="button" />
+            <TextField fx:id="searchField" promptText="Search subjects..." prefWidth="200" />
+        </HBox>
+
+        <TableView fx:id="subjectTable" prefHeight="500">
+            <columns>
+                <TableColumn text="ID" prefWidth="50">
+                    <cellValueFactory><PropertyValueFactory property="subjectId" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Subject Name" prefWidth="250">
+                    <cellValueFactory><PropertyValueFactory property="subjectName" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Subject Code" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="subjectCode" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Credits" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="credits" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Actions" prefWidth="150" />
+            </columns>
+        </TableView>
+
+        <Label fx:id="messageLabel" text="" styleClass="label" />
+    </children>
+</VBox>

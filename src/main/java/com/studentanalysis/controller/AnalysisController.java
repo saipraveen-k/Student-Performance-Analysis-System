@@ -96,7 +96,7 @@ public class AnalysisController {
             ObservableList<StudentRanking> rankings = FXCollections.observableArrayList();
             for (int i = 0; i < topStudents.size(); i++) {
                 Student student = topStudents.get(i);
-                double average = analysisService.marksDAO.getAverageMarksForStudent(student.getStudentId());
+                double average = analysisService.getAverageMarksForStudent(student.getStudentId());
                 rankings.add(new StudentRanking(i + 1, student.getName(), average));
             }
             topStudentsTable.setItems(rankings);
@@ -105,7 +105,7 @@ public class AnalysisController {
             List<Subject> weakSubjects = analysisService.getWeakPerformingSubjects(5);
             ObservableList<SubjectPerformance> subjectPerformances = FXCollections.observableArrayList();
             for (Subject subject : weakSubjects) {
-                double average = analysisService.marksDAO.getAverageMarksForSubject(subject.getSubjectId());
+                double average = analysisService.getAverageMarksForSubject(subject.getSubjectId());
                 subjectPerformances.add(new SubjectPerformance(subject.getSubjectName(), average));
             }
             weakSubjectsTable.setItems(subjectPerformances);

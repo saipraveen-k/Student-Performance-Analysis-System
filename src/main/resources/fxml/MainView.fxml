@@ -93,16 +93,16 @@
                         <VBox spacing="10">
                             <HBox spacing="10">
                                 <Button text="Add Student" onAction="#handleAddStudent" styleClass="button" />
-                                <Button text="Refresh" styleClass="button" />
+                                <Button text="Refresh" onAction="#handleRefreshStudents" styleClass="button" />
                             </HBox>
-                            <TableView prefHeight="500">
+                            <TableView fx:id="studentsTable" prefHeight="500">
                                 <columns>
-                                    <TableColumn text="ID" prefWidth="50" />
-                                    <TableColumn text="Name" prefWidth="150" />
-                                    <TableColumn text="Email" prefWidth="200" />
-                                    <TableColumn text="Phone" prefWidth="120" />
-                                    <TableColumn text="Enrollment Date" prefWidth="120" />
-                                    <TableColumn text="Actions" prefWidth="150" />
+                                    <TableColumn fx:id="studentIdColumn" text="ID" prefWidth="50" />
+                                    <TableColumn fx:id="studentNameColumn" text="Name" prefWidth="150" />
+                                    <TableColumn fx:id="studentEmailColumn" text="Email" prefWidth="200" />
+                                    <TableColumn fx:id="studentPhoneColumn" text="Phone" prefWidth="120" />
+                                    <TableColumn fx:id="studentEnrollmentDateColumn" text="Enrollment Date" prefWidth="120" />
+                                    <TableColumn fx:id="studentActionsColumn" text="Actions" prefWidth="150" />
                                 </columns>
                             </TableView>
                         </VBox>
@@ -164,12 +164,28 @@
                             </HBox>
                             <TabPane prefHeight="500">
                                 <tabs>
-                                    <Tab text="Charts">
+                                <Tab text="Charts">
                                         <content>
                                             <VBox spacing="10">
-                                                <Label text="Performance Charts" styleClass="label header" />
-                                                <!-- Placeholder for charts -->
-                                                <Label text="Charts will be displayed here" />
+                                                <Label text="Subject Performance Chart" styleClass="label header" />
+                                                <BarChart fx:id="subjectChart" prefHeight="300">
+                                                    <xAxis>
+                                                        <CategoryAxis label="Subjects" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="Average Marks" />
+                                                    </yAxis>
+                                                </BarChart>
+
+                                                <Label text="Student Performance Chart" styleClass="label header" />
+                                                <BarChart fx:id="studentChart" prefHeight="300">
+                                                    <xAxis>
+                                                        <CategoryAxis label="Students" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="Average Marks" />
+                                                    </yAxis>
+                                                </BarChart>
                                             </VBox>
                                         </content>
                                     </Tab>

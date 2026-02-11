@@ -30,7 +30,7 @@
             <TextField fx:id="phoneField" promptText="Enter phone number" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
             <Label text="Enrollment Date:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <DatePicker fx:id="enrollmentDatePicker" promptText="Select enrollment date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="enrollmentDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         </GridPane>
 
         <HBox spacing="10" alignment="CENTER">

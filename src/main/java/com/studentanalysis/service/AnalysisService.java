@@ -156,4 +156,14 @@ public class AnalysisService {
                 .min()
                 .orElse(0.0);
     }
+
+    // Public method to get average marks for a student
+    public double getAverageMarksForStudent(int studentId) throws SQLException {
+        return marksDAO.getAverageMarksForStudent(studentId);
+    }
+
+    // Public method to get average marks for a subject
+    public double getAverageMarksForSubject(int subjectId) throws SQLException {
+        return marksDAO.getAverageMarksForSubject(subjectId);
+    }
 }

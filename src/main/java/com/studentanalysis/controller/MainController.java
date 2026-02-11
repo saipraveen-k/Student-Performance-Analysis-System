@@ -1,20 +1,32 @@
 package com.studentanalysis.controller;
 
+import com.studentanalysis.model.Student;
+import com.studentanalysis.model.Subject;
+import com.studentanalysis.model.Marks;
 import com.studentanalysis.service.StudentService;
 import com.studentanalysis.service.SubjectService;
 import com.studentanalysis.service.MarksService;
 import com.studentanalysis.service.AnalysisService;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 public class MainController {
 
@@ -23,6 +35,8 @@ public class MainController {
     @FXML private Label totalSubjectsLabel;
     @FXML private Label totalMarksLabel;
     @FXML private TextArea recentActivityTextArea;
+    @FXML private BarChart<String, Number> subjectChart;
+    @FXML private BarChart<String, Number> studentChart;
 
     private StudentService studentService;
     private SubjectService subjectService;
@@ -40,6 +54,7 @@ public class MainController {
     public void initialize() {
         updateDashboardStats();
         recentActivityTextArea.setText("Application started successfully.\nDatabase connection established.");
+        updateCharts();
     }
 
     private void updateDashboardStats() {

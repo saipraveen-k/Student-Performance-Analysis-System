@@ -234,7 +234,8 @@ Student-Performance-Analysis-System/
 Follow these steps to set up and run the Student Performance Analysis System on your local machine.
 
 ### Prerequisites
-- **Java JDK (8 or above):** Ensure JDK is installed and JAVA_HOME is set. Download from [Oracle](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) if needed.
+- **Java JDK (25):** Ensure JDK is installed and JAVA_HOME is set to `E:\java\clg`.
+- **JavaFX SDK (25):** Ensure JavaFX SDK is installed in `E:\java\clg\javafx-sdk-25`.
 - **PostgreSQL:** Install PostgreSQL server. Download from [PostgreSQL Official Site](https://www.postgresql.org/download/).
 - **VS Code or Eclipse IDE:** Recommended for editing and running the project. Install Java extensions for VS Code.
 
