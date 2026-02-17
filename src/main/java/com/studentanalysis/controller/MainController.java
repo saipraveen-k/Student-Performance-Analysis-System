@@ -67,6 +67,37 @@ public class MainController {
         }
     }
 
+    private void updateCharts() {
+        try {
+            // Update subject performance chart
+            XYChart.Series<String, Number> subjectSeries = new XYChart.Series<>();
+            subjectSeries.setName("Average Marks");
+            
+            List<Subject> subjects = subjectService.getAllSubjects();
+            for (Subject subject : subjects) {
+                double avgMarks = analysisService.getAverageMarksForSubject(subject.getSubjectId());
+                subjectSeries.getData().add(new XYChart.Data<>(subject.getSubjectName(), avgMarks));
+            }
+            subjectChart.getData().clear();
+            subjectChart.getData().add(subjectSeries);
+            
+            // Update student performance chart
+            XYChart.Series<String, Number> studentSeries = new XYChart.Series<>();
+            studentSeries.setName("Total Marks");
+            
+            List<Student> students = studentService.getAllStudents();
+            for (Student student : students) {
+                double totalMarks = marksService.getTotalMarksForStudent(student.getStudentId());
+                studentSeries.getData().add(new XYChart.Data<>(student.getName(), totalMarks));
+            }
+            studentChart.getData().clear();
+            studentChart.getData().add(studentSeries);
+            
+        } catch (SQLException e) {
+            showAlert("Database Error", "Failed to update charts: " + e.getMessage());
+        }
+    }
+
     @FXML
     private void handleExit() {
         System.exit(0);
