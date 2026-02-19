@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentanalysis.controller.ReportController"
+      spacing="15" prefWidth="800" prefHeight="600" styleClass="root">
+    <children>
+        <Label text="Student Performance Report" styleClass="label header" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Select Student:" />
+            <ComboBox fx:id="studentComboBox" prefWidth="200" promptText="Choose a student..." />
+            <Button text="Generate Report" onAction="#handleGenerateReport" styleClass="button" />
+        </HBox>
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+            <content>
+                <VBox spacing="20" style="-fx-padding: 20;">
+                    <!-- Student Details Section -->
+                    <GridPane hgap="10" vgap="10">
+                        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="nameLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        
+                        <Label text="ID:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="idLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="emailLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    </GridPane>
+
+                    <Separator />
+
+                    <!-- Academic Summary -->
+                    <GridPane hgap="20" vgap="10">
+                        <Label text="Total Subjects:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="totalSubjectsLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <Label text="Average Marks:" GridPane.rowIndex="0" GridPane.columnIndex="2" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="averageMarksLabel" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                        <Label text="Grade:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="gradeLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Rank Prediction:" GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="rankLabel" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                    </GridPane>
+
+                    <Separator />
+
+                    <!-- Detailed Marks Table -->
+                    <Label text="Subject Wise Performance" styleClass="label sub-header" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <TableView fx:id="reportTable" prefHeight="200">
+                        <columns>
+                            <TableColumn text="Subject" prefWidth="200" fx:id="colParams" />
+                            <TableColumn text="Marks Obtained" prefWidth="150" fx:id="colValue" />
+                            <TableColumn text="Total Marks" prefWidth="150" fx:id="colTotal" />
+                            <TableColumn text="Grade" prefWidth="100" fx:id="colGrade" />
+                        </columns>
+                    </TableView>
+
+                     <!-- Visualization -->
+                    <Label text="Performance Chart" styleClass="label sub-header" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <BarChart fx:id="performanceChart" prefHeight="300">
+                        <xAxis>
+                            <CategoryAxis label="Subject" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Marks" />
+                        </yAxis>
+                    </BarChart>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+
+        <Label fx:id="messageLabel" text="" styleClass="label" />
+    </children>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+</VBox>

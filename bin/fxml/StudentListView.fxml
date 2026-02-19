@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentanalysis.controller.StudentListController"
+      spacing="15" prefWidth="800" prefHeight="600" styleClass="root">
+    <children>
+        <Label text="Student List" styleClass="label header" />
+
+        <HBox spacing="10">
+            <Button text="Add Student" onAction="#handleAddStudent" styleClass="button" />
+            <Button text="Refresh" onAction="#handleRefresh" styleClass="button" />
+            <TextField fx:id="searchField" promptText="Search students..." prefWidth="200" />
+        </HBox>
+
+        <TableView fx:id="studentTable" prefHeight="500">
+            <columns>
+                <TableColumn text="ID" prefWidth="50">
+                    <cellValueFactory><PropertyValueFactory property="studentId" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Name" prefWidth="200">
+                    <cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Email" prefWidth="250">
+                    <cellValueFactory><PropertyValueFactory property="email" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Phone" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="phone" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Enrollment Date" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="enrollmentDate" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Actions" prefWidth="150" />
+            </columns>
+        </TableView>
+
+        <Label fx:id="messageLabel" text="" styleClass="label" />
+    </children>
+</VBox>
