@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentanalysis.controller.MarksListController"
+      spacing="15" prefWidth="800" prefHeight="600" styleClass="root">
+    <children>
+        <Label text="Student Marks" styleClass="label header" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="Enter Marks" onAction="#handleEnterMarks" styleClass="button" />
+            <Button text="Refresh" onAction="#handleRefresh" styleClass="button" />
+            <Label text="Filter by Student ID:" />
+            <TextField fx:id="studentIdFilter" prefWidth="100" />
+            <Button text="Filter" onAction="#handleFilter" />
+        </HBox>
+
+        <TableView fx:id="marksTable" prefHeight="500" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Mark ID" prefWidth="70">
+                    <cellValueFactory><PropertyValueFactory property="markId" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Student ID" prefWidth="80">
+                    <cellValueFactory><PropertyValueFactory property="studentId" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Subject ID" prefWidth="80">
+                    <cellValueFactory><PropertyValueFactory property="subjectId" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Marks Obtained" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="marksObtained" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Total Marks" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="totalMarks" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Exam Date" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="examDate" /></cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+        <Label fx:id="messageLabel" text="" styleClass="label" />
+    </children>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+</VBox>

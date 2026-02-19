@@ -117,13 +117,13 @@
                                 <Button text="Add Subject" onAction="#handleAddSubject" styleClass="button" />
                                 <Button text="Refresh" styleClass="button" />
                             </HBox>
-                            <TableView prefHeight="500">
+                            <TableView fx:id="subjectsTable" prefHeight="500">
                                 <columns>
-                                    <TableColumn text="ID" prefWidth="50" />
-                                    <TableColumn text="Subject Name" prefWidth="200" />
-                                    <TableColumn text="Subject Code" prefWidth="120" />
-                                    <TableColumn text="Credits" prefWidth="80" />
-                                    <TableColumn text="Actions" prefWidth="150" />
+                                    <TableColumn fx:id="subjectIdColumn" text="ID" prefWidth="50" />
+                                    <TableColumn fx:id="subjectNameColumn" text="Subject Name" prefWidth="200" />
+                                    <TableColumn fx:id="subjectCodeColumn" text="Subject Code" prefWidth="120" />
+                                    <TableColumn fx:id="subjectCreditsColumn" text="Credits" prefWidth="80" />
+                                    <TableColumn fx:id="subjectActionsColumn" text="Actions" prefWidth="150" />
                                 </columns>
                             </TableView>
                         </VBox>
@@ -138,16 +138,15 @@
                                 <Button text="Enter Marks" onAction="#handleEnterMarks" styleClass="button" />
                                 <Button text="Refresh" styleClass="button" />
                             </HBox>
-                            <TableView prefHeight="500">
+                            <TableView fx:id="marksTable" prefHeight="500">
                                 <columns>
-                                    <TableColumn text="ID" prefWidth="50" />
-                                    <TableColumn text="Student" prefWidth="150" />
-                                    <TableColumn text="Subject" prefWidth="150" />
-                                    <TableColumn text="Marks Obtained" prefWidth="120" />
-                                    <TableColumn text="Total Marks" prefWidth="100" />
-                                    <TableColumn text="Percentage" prefWidth="100" />
-                                    <TableColumn text="Exam Date" prefWidth="120" />
-                                    <TableColumn text="Actions" prefWidth="150" />
+                                    <TableColumn fx:id="markIdColumn" text="ID" prefWidth="50" />
+                                    <TableColumn fx:id="markStudentIdColumn" text="Student ID" prefWidth="100" />
+                                    <TableColumn fx:id="markSubjectIdColumn" text="Subject ID" prefWidth="100" />
+                                    <TableColumn fx:id="marksObtainedColumn" text="Marks Obtained" prefWidth="120" />
+                                    <TableColumn fx:id="totalMarksColumn" text="Total Marks" prefWidth="100" />
+                                    <TableColumn fx:id="examDateColumn" text="Exam Date" prefWidth="120" />
+                                    <TableColumn fx:id="markActionsColumn" text="Actions" prefWidth="150" />
                                 </columns>
                             </TableView>
                         </VBox>

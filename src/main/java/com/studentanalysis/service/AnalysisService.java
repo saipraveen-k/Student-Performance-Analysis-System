@@ -166,4 +166,19 @@ public class AnalysisService {
     public double getAverageMarksForSubject(int subjectId) throws SQLException {
         return marksDAO.getAverageMarksForSubject(subjectId);
     }
+
+    // Get subject-wise performance for a specific student
+    public Map<String, Double> getStudentPerformanceMap(int studentId) throws SQLException {
+        List<Marks> studentsMarks = marksDAO.getMarksByStudentId(studentId);
+        Map<String, Double> performanceMap = new HashMap<>();
+
+        for (Marks mark : studentsMarks) {
+            Subject subject = subjectDAO.getSubjectById(mark.getSubjectId());
+            if (subject != null) {
+                performanceMap.put(subject.getSubjectName(), mark.getMarksObtained());
+            }
+        }
+
+        return performanceMap;
+    }
 }

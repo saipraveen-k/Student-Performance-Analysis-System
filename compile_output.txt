@@ -1,0 +1,15 @@
+javac.exe : Note: Some input files use 
+unchecked or unsafe operations.
+At line:1 char:1
++ & "E:\java\openjdk-25.0.2_windows-x64_bin\j
+dk-25.0.2\bin\javac.exe" - ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified:  
+   (Note: Some inpu...afe operations.:Strin  
+  g) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandE 
+   rror
+ 
+Note: Recompile with -Xlint:unchecked for 
+details.
