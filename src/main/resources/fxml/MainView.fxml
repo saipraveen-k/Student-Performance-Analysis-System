@@ -115,7 +115,7 @@
                         <VBox spacing="10">
                             <HBox spacing="10">
                                 <Button text="Add Subject" onAction="#handleAddSubject" styleClass="button" />
-                                <Button text="Refresh" styleClass="button" />
+                                <Button text="Refresh" onAction="#handleRefreshSubjects" styleClass="button" />
                             </HBox>
                             <TableView fx:id="subjectsTable" prefHeight="500">
                                 <columns>
@@ -136,7 +136,7 @@
                         <VBox spacing="10">
                             <HBox spacing="10">
                                 <Button text="Enter Marks" onAction="#handleEnterMarks" styleClass="button" />
-                                <Button text="Refresh" styleClass="button" />
+                                <Button text="Refresh" onAction="#handleRefreshMarks" styleClass="button" />
                             </HBox>
                             <TableView fx:id="marksTable" prefHeight="500">
                                 <columns>

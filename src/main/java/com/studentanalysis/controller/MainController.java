@@ -118,21 +118,23 @@ public class MainController {
     }
 
     private void setupSubjectTable() {
-        // Need to bind columns from FXML if they don't have fx:id, or update FXML. 
-        // Assuming FXML is updated to include fx:ids for these columns or we grab them by index if needed.
-        // For robustness, it's better to update FXML. But here I will try to binding assuming the FXML 
-        // will be updated to match these injections or I will rely on the fact that I will update FXML next.
+        subjectIdColumn.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
+        subjectNameColumn.setCellValueFactory(new PropertyValueFactory<>("subjectName"));
+        subjectCodeColumn.setCellValueFactory(new PropertyValueFactory<>("subjectCode"));
+        subjectCreditsColumn.setCellValueFactory(new PropertyValueFactory<>("credits"));
         
-        // Actually, looking at the previous MainView.fxml read, the Subjects and Marks tables 
-        // didn't have fx:ids for columns. I need to update MainView.fxml to match this controller's expectations 
-        // or get columns by index. Let's get by index for now to avoid massive FXML rewrite if possible, 
-        // or better, I will update FXML in the next step to add fx:ids which is cleaner.
-        // BUT wait, I have already injected them with @FXML above. 
-        // So I MUST update MainView.fxml to have these fx:ids.
+        setupDeleteColumn(subjectActionsColumn, "subject");
     }
 
     private void setupMarksTable() {
-        // Similar to subjects, will setup after FXML update.
+        markIdColumn.setCellValueFactory(new PropertyValueFactory<>("markId"));
+        markStudentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        markSubjectIdColumn.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
+        marksObtainedColumn.setCellValueFactory(new PropertyValueFactory<>("marksObtained"));
+        totalMarksColumn.setCellValueFactory(new PropertyValueFactory<>("totalMarks"));
+        examDateColumn.setCellValueFactory(new PropertyValueFactory<>("examDate"));
+        
+        setupDeleteColumn(markActionsColumn, "mark");
     }
 
     // Helper to setup delete buttons
@@ -283,6 +285,11 @@ public class MainController {
     }
 
     @FXML
+    private void handleRefreshSubjects() {
+        loadSubjects();
+    }
+
+    @FXML
     private void handleViewSubjects() {
         mainTabPane.getSelectionModel().select(2); // Select Subjects Tab
     }
@@ -291,6 +298,11 @@ public class MainController {
     private void handleEnterMarks() {
         openWindow("/fxml/EnterMarksView.fxml", "Enter Marks");
         refreshAllData();
+    }
+
+    @FXML
+    private void handleRefreshMarks() {
+        loadMarks();
     }
 
     @FXML
