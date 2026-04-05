@@ -1,96 +1,72 @@
-# 🚀 Run Guide: Student Performance Analysis System
+# 🚀 Updated Run Guide: Student Performance Analysis System
 
-This guide provides step-by-step instructions to compile and run the application on Windows using **PowerShell** or **Command Prompt (CMD)**.
+Simplified instructions using batch files (Windows CMD/PowerShell compatible). Project is pre-compiled in `bin/`.
 
 ## ✅ Prerequisites
+- **Java JDK 25+** (system PATH preferred: `java -version`)
+- **JavaFX SDK 17** (bundled: `javafx/javafx-sdk-17.0.2`)
+- **PostgreSQL** running on `localhost:5432`, user `postgres`/pass `root`
+  - Create DB: `CREATE DATABASE student_performance_db;`
+  - Run `psql -U postgres -d student_performance_db -f database/schema.sql`
 
-Ensure you have the following installed and configured:
+## 🚀 Quick Run (Recommended)
 
-1.  **Java JDK 25**:
-    *   **Path**: `E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2`
-    *   *Verify*: `java -version`
-2.  **JavaFX SDK 17.0.2**:
-    *   **Path**: `javafx\javafx-sdk-17.0.2` (Located in project root)
-3.  **PostgreSQL**:
-    *   Running on `localhost:5432`
-    *   **Username**: `postgres`
-    *   **Password**: `root` (Default in `DBConnection.java`)
+**From project root** (`c:/tempp/projects/Student-Performance-Analysis-System/Student-Performance-Analysis-System`):
 
----
+1. **Test DB**: `.\test_db.bat`
+   - Verifies connection, adds test data.
 
-## 🗄️ Step 1: Database Setup
+2. **Launch App**: `.\run.bat`
+   - Starts JavaFX UI. Ignore JavaFX warnings.
 
-1.  Open your database management tool (pgAdmin or psql).
-2.  Create the database:
-    ```sql
-    CREATE DATABASE student_performance_db;
-    ```
-3.  Execute the schema script located at `database/schema.sql` to create tables.
+**Stop**: Ctrl+C in terminal.
 
----
+## 🔧 Manual Run (if .bat fail)
 
-## 📝 Step 2: Generate Source List
+Use system `java` (if JDK25 in PATH):
 
-Before compiling, we need to list all Java source files.
-
-**PowerShell:**
-```powershell
-Get-ChildItem -Recurse -Filter *.java -Name | Out-File -Encoding ASCII sources.txt
+```
+java --module-path "javafx/javafx-sdk-17.0.2/lib" --add-modules javafx.controls,javafx.fxml -cp "bin;postgresql-42.7.9.jar" com.studentanalysis.MainApp
 ```
 
-**Command Prompt (CMD):**
-```cmd
+**Specific JDK path** (e.g., `E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\java.exe` replace above `java`):
+
+```
+\"E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\java.exe\" --module-path "javafx/javafx-sdk-17.0.2/lib" --add-modules javafx.controls,javafx.fxml -cp "bin;postgresql-42.7.9.jar" com.studentanalysis.MainApp
+```
+
+## 📋 .bat Contents
+
+**test_db.bat**:
+```
+@echo off
+\"E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\java.exe\" -cp \"bin;postgresql-42.7.9.jar\" com.studentanalysis.TestDBConnection
+pause
+```
+
+**run.bat**:
+```
+@echo off
+xcopy \"src\main\resources\" \"bin\" /E /I /Y >nul 2>&1
+\"E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\java.exe\" --module-path \"javafx\javafx-sdk-17.0.2\lib\" --add-modules javafx.controls,javafx.fxml -cp \"bin;postgresql-42.7.9.jar\" com.studentanalysis.MainApp
+pause
+```
+
+**Update paths**: Edit .bat files for your JDK location.
+
+## 🛠️ Recompile (if source changes)
+
+```
 dir /s /b *.java > sources.txt
+\"E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\javac.exe\" -d bin -cp \"postgresql-42.7.9.jar\" --module-path \"javafx/javafx-sdk-17.0.2/lib\" --add-modules javafx.controls,javafx.fxml @sources.txt
+xcopy \"src\main\resources\" \"bin\" /E /I /Y
 ```
-
----
-
-## ⚙️ Step 3: Run the Application
-
-Execute the following commands from the **project root directory**:
-`C:\tempp\projects\Student-Performance-Analysis-System\Student-Performance-Analysis-System`
-
-### Option A: PowerShell (Recommended)
-
-**1. Compile:**
-```powershell
-& "E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\javac.exe" -d bin -cp "src/main/java;lib/*;postgresql-42.7.9.jar" --module-path "javafx/javafx-sdk-17.0.2/lib" --add-modules javafx.controls,javafx.fxml '@sources.txt'
-```
-
-**2. Copy Resources:**
-```powershell
-Copy-Item -Path "src\main\resources\*" -Destination "bin" -Recurse -Force
-```
-
-**3. Run:**
-```powershell
-& "E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\java.exe" -cp "bin;lib/*;postgresql-42.7.9.jar" --module-path "javafx/javafx-sdk-17.0.2/lib" --add-modules javafx.controls,javafx.fxml com.studentanalysis.MainApp
-```
-
-### Option B: Command Prompt (CMD)
-
-**1. Compile:**
-```cmd
-"E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\javac.exe" -d bin -cp "src/main/java;lib/*;postgresql-42.7.9.jar" --module-path "javafx/javafx-sdk-17.0.2/lib" --add-modules javafx.controls,javafx.fxml @sources.txt
-```
-
-**2. Copy Resources:**
-```cmd
-xcopy "src\main\resources" "bin" /E /I /Y
-```
-
-**3. Run:**
-```cmd
-"E:\java\openjdk-25.0.2_windows-x64_bin\jdk-25.0.2\bin\java.exe" -cp "bin;lib/*;postgresql-42.7.9.jar" --module-path "javafx/javafx-sdk-17.0.2/lib" --add-modules javafx.controls,javafx.fxml com.studentanalysis.MainApp
-```
-
----
 
 ## ❓ Troubleshooting
-
 | Issue | Solution |
 |-------|----------|
-| **"File not found: sources.txt"** | Ensure you ran **Step 2** to generate the file list. |
-| **"PostgreSQL JDBC Driver not found"** | Check if `postgresql-42.7.9.jar` is in the project root. |
-| **"Database connection failed"** | Verify PostgreSQL service is running and credentials in `DBConnection.java` match your setup. |
-| **"Module not found: javafx.controls"** | Ensure the `--module-path` points correctly to `javafx/javafx-sdk-17.0.2/lib`. |
+| `java not found` | Add JDK25 `bin` to PATH |
+| DB fail | Start PostgreSQL, create DB/schema |
+| Module warnings | Normal/Ignore |
+| No UI | Check JavaFX path, JDK version |
+
