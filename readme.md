@@ -27,7 +27,7 @@ The application follows a modular **Model-View-Controller (MVC)** architecture w
 
 ```mermaid
 graph TD
-    User[User] -->|Interacts| View[JavaFX View (FXML/CSS)]
+    User[User] -->|Interacts| View["JavaFX View (FXML/CSS)"]
     View -->|Events| Controller[Controller Layer]
     Controller -->|Calls| Service[Service Layer (Business Logic)]
     Service -->|Uses| DAO[DAO Layer (Data Access)]
