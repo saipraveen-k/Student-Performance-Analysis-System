@@ -26,6 +26,7 @@ A comprehensive JavaFX-based desktop application designed to manage student reco
 The application follows a modular **Model-View-Controller (MVC)** architecture with a layered design pattern:
 
 ```mermaid
+
 graph TD
     User[User] -->|Interacts| View[JavaFX View (FXML/CSS)]
     View -->|Events| Controller[Controller Layer]
